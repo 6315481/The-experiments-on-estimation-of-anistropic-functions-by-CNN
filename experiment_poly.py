@@ -3,7 +3,7 @@ import torch
 from torch.optim import SGD
 from torch.nn import Sequential, Conv1d, Module, Linear, ReLU, MSELoss
 from dilated_CNN import DilatedConvNet
-from functions import generate_poly_increasing
+from functions import generate_AR_poly
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='TRUE'
 
@@ -25,7 +25,7 @@ def generate_experiment_data(generate_function, n, dim, p, test_size=0.5):
 n = 100
 dim = 10000
 p = 2
-X, y, X_test, y_test = generate_experiment_data(generate_poly_increasing, n, dim, p)
+X, y, X_test, y_test = generate_experiment_data(generate_AR_poly, n, dim, p)
 
 num_layers = 4
 out_channels = 4

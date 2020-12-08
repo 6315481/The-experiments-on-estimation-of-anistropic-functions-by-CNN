@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def generate_poly_increasing(n, dim, p):
+def generate_AR_poly(n, dim, p):
 
     X = np.random.uniform(0, 1, size = (n, dim))
 
