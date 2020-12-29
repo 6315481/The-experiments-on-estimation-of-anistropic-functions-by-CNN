@@ -1,19 +1,32 @@
 import numpy as np
 
 
-def generate_AR_poly(n, dim, p):
+def anistrophic_decrease(X, sigma):
+    num = X.shape[0]
+    dim = X.shape[1]
 
-    X = np.random.uniform(0, 1, size = (n, dim))
+    y = np.zeros(num)
 
-    a = []
+    normalizer = 0
+    phi = np.sqrt(2) * np.cos(2 * np.pi * X)
     for i in range(dim):
-        a.append((i+1) ** (-p))
-    
-    y = np.dot(X, np.array(a))
+        normalizer = normalizer + 2 ** sigma[i] 
+        y = y + np.prod(phi[:, 0:(i+1)], axis=1) / normalizer
 
-    return np.reshape(X, (n, 1, dim)), y
-
+    return y    
 
 
+def mix_decrease(X, sigma):
+    num = X.shape[0]
+    dim = X.shape[1]
 
+    y = np.zeros(num)
+
+    normalizer = 1
+    phi = np.sqrt(2) * np.cos(2 * np.pi * X)
+    for i in range(dim):
+        normalizer = normalizer * 2 ** sigma[i] 
+        y = y + np.prod(phi[:, 0:(i+1)], axis=1) / normalizer
+
+    return y   
 

@@ -32,6 +32,6 @@ for p in p_list:
 print(test_losses)
 print('sum_inv: {}'.format(np.sum(1 / sigma)))
 
-with open('anistrophic_poly.pickle', 'wb') as f:
+with open('anistrophic_sparse.pickle', 'wb') as f:
     pickle.dump(test_losses, f)
 
